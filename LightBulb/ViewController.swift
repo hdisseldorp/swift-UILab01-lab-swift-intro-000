@@ -9,27 +9,40 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+  @IBOutlet weak var lightBulb: UIImageView!
+  @IBOutlet weak var segmentControl: UISegmentedControl!
+  
+  enum BulbColor: Int { case red = 0, yellow, blue, green }
+  
+  override func viewDidLoad() {
     
-    @IBOutlet weak var lightBulb: UIImageView!
+    super.viewDidLoad()
     
+    // Preset segment control
+    // Set lightbulb to blue
+    self.segmentControl.selectedSegmentIndex = BulbColor.blue.rawValue
+    lightBulb.backgroundColor = UIColor.blue
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        lightBulb.backgroundColor = UIColor.blue
-        
+  }
+  
+  
+  @IBAction func colorSelected(_ sender: UISegmentedControl) {
+    
+    print(sender.selectedSegmentIndex)
+    
+    switch sender.selectedSegmentIndex {
+    case BulbColor.red.rawValue:
+      lightBulb.backgroundColor = .red
+    case BulbColor.yellow.rawValue:
+      lightBulb.backgroundColor = .yellow
+    case BulbColor.blue.rawValue:
+      lightBulb.backgroundColor = .blue
+    case BulbColor.green.rawValue:
+      lightBulb.backgroundColor = .green
+    default:
+      lightBulb.backgroundColor = .white
     }
-    
-    
-    @IBAction func colorSelected(_ sender: UISegmentedControl) {
-        
-        print(sender.selectedSegmentIndex)
-        
-    }
-    
-    
-
-   
-
+  }
+  
 }
